@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.sunshine1" >
+
+    <!-- Anahat - Permission added in order for Sunshine1 to perform network access -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Base.AppCompat.Light.DarkActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".MainActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower. For 4.1 and above, the line above was good enough -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.sunshine1.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.sunshine1.MainActivity" />
+        </activity>
+
+        <!-- Anahat - Content Provider added in the manifest file so that Content Resolver can find it -->
+        <provider
+            android:authorities="com.example.android.sunshine1"
+            android:name=".data.WeatherProvider" />
+
+        <!--Anahat - Adding custom service to the application -->
+        <service android:name=".service.SunshineService" />
+
+        <!--Anahat - Adding broadcast receiver to the app -->
+        <receiver android:name=".service.SunshineService$AlarmReceiver" android:enabled="true"/>
+
+    </application>
+
+</manifest>

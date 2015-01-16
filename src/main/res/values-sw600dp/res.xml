@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Anahat - This is an aliasing file to make the detail screen design more responsive for wider screens -->
+
+<resources>
+    <item type="layout" name="fragment_detail">@layout/fragment_detail_wide</item>
+</resources>
